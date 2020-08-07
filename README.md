@@ -1,4 +1,4 @@
-# vue_proj_02
+# vue_proj_02 这是一个Vue案例的仓库
 
 ## Project setup
 ```
