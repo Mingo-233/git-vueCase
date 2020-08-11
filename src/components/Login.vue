@@ -48,7 +48,7 @@ export default {
         }
     },
     methods:{
-        //重置按钮
+        //重置按钮   这个$refs是elementUI form自设定的一个属性
         reset:function(){
             this.$refs.loginFormRef.resetFields();
         },
@@ -60,7 +60,7 @@ export default {
                 //解构接收返回的数据里面的data属性里面的内容 :res 是将接收数据的data重命名res
                 //请求失败，返回的是一个promise对象，所以用异步函数
                 const {data:res} =await this.$axios.post('login',this.loginForm)
-                console.log(res);
+                
                 if(res.meta.status !==200) return this.$message.error('登录失败')
                 this.$message.success('登录成功')
                 // 1登录成功后将token返回到客户单的sessionStronge中
