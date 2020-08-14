@@ -19,3 +19,9 @@ body,
 .el-pagination{
     margin-top: 15px;
 }
+
+/*这是固定类名，由富文本编辑器自己设定的 */
+/* 并且要放在包含富文本编辑器的父类容器中设定，在当前的样式表设定不起效果，因为找不到ql-editor类的*/
+.ql-editor {
+    min-height: 300px ;
+  }
