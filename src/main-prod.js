@@ -5,11 +5,14 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 //导入全局样式表
 import './assets/css/global.css';
-//导入富文本编辑器
-import VueQuillEditor from 'vue-quill-editor'
-import 'quill/dist/quill.core.css' // import styles
-import 'quill/dist/quill.snow.css' // for snow theme
-import 'quill/dist/quill.bubble.css' // for bubble theme
+// //导入富文本编辑器
+// import VueQuillEditor from 'vue-quill-editor'
+// import 'quill/dist/quill.core.css' // import styles
+// import 'quill/dist/quill.snow.css' // for snow theme
+// import 'quill/dist/quill.bubble.css' // for bubble theme
+// //导入进度条js文件和css文件
+// import NProgress from 'nprogress'
+// import 'nprogress/nprogress.css'
 
 import TreeTable from 'vue-table-with-tree-grid'
 import axios from 'axios'
@@ -18,10 +21,17 @@ import axios from 'axios'
 axios.defaults.baseURL= 'http://127.0.0.1:8888/api/private/v1/'
 //axios请求体拦截
 axios.interceptors.request.use(config => {
+  //在请求拦截中加入进度条的开始
+  NProgress.start()
   // console.log(config);
   //为请求头对象，添加token验证的Authorization字段
   config.headers.Authorization = window.sessionStorage.getItem('token')
   //最后必须return config
+  return config
+})
+axios.interceptors.response.use(config => {
+  //在响应拦截中加入进度条的结束
+  NProgress.done()
   return config
 })
 //将axios挂载到实例原型上，方便调用
